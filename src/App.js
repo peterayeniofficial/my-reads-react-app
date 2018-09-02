@@ -51,6 +51,14 @@ class BooksApp extends React.Component {
 
   }
 
+  // Search Api call
+  searchBooks = (query) => {
+
+    return BooksAPI.search(query).then(books => books)
+  }
+
+
+
   
 
   render() {
@@ -70,7 +78,11 @@ class BooksApp extends React.Component {
         )}/>
 
         <Route path='/search' render={({history}) => (
-          <SearchPage/>
+          <SearchPage
+            onSearchBooks={this.searchBooks}
+            onUpdateBookShelf={this.updateBookShelf}
+            books={books}
+          />
         )}/>
       
       </div>
