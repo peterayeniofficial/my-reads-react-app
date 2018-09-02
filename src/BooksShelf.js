@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ProTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import BookShelfChanger from './BookShelfChanger'
 
 class BooksShelf extends Component {
 
@@ -8,8 +9,10 @@ class BooksShelf extends Component {
         books: ProTypes.array.isRequired
     }
 
+
+
     render(){
-        const { books } = this.props
+        const { books, onUpdateBookShelf } = this.props
 
         const currentlyReadingBooks = books.filter((book) => (
             book.shelf === 'currentlyReading'
@@ -41,15 +44,7 @@ class BooksShelf extends Component {
                                 <div className="book">
                                 <div className="book-top">
                                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
-                                    <div className="book-shelf-changer">
-                                    <select>
-                                        <option value="move" disabled>Move to...</option>
-                                        <option value="currentlyReading">Currently Reading</option>
-                                        <option value="wantToRead">Want to Read</option>
-                                        <option value="read">Read</option>
-                                        <option value="none">None</option>
-                                    </select>
-                                    </div>
+                                   <BookShelfChanger shelf={book.shelf} onUpdateBookShelf={shelf => onUpdateBookShelf(book, shelf)} />
                                 </div>
                                 <div className="book-title">{book.title}</div>
                                 <div className="book-authors">{book.authors}</div>
@@ -70,15 +65,9 @@ class BooksShelf extends Component {
                                 <div className="book">
                                 <div className="book-top">
                                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
-                                    <div className="book-shelf-changer">
-                                    <select>
-                                        <option value="move" disabled>Move to...</option>
-                                        <option value="currentlyReading">Currently Reading</option>
-                                        <option value="wantToRead">Want to Read</option>
-                                        <option value="read">Read</option>
-                                        <option value="none">None</option>
-                                    </select>
-                                    </div>
+                                    <BookShelfChanger shelf={book.shelf} onUpdateBookShelf={shelf => onUpdateBookShelf(book, shelf)} />
+
+
                                 </div>
                                 <div className="book-title">{book.title}</div>
                                 <div className="book-authors">{book.authors}</div>
@@ -100,15 +89,9 @@ class BooksShelf extends Component {
                                 <div className="book">
                                 <div className="book-top">
                                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
-                                    <div className="book-shelf-changer">
-                                    <select>
-                                        <option value="move" disabled>Move to...</option>
-                                        <option value="currentlyReading">Currently Reading</option>
-                                        <option value="wantToRead">Want to Read</option>
-                                        <option value="read">Read</option>
-                                        <option value="none">None</option>
-                                    </select>
-                                    </div>
+                                    <BookShelfChanger shelf={book.shelf} onUpdateBookShelf={shelf => onUpdateBookShelf(book, shelf)} />
+
+
                                 </div>
                                 <div className="book-title">{book.title}</div>
                                 <div className="book-authors">{book.authors}</div>
