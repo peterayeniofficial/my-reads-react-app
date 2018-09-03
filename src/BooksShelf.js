@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import ProTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import BookShelfChanger from './BookShelfChanger'
+import BookGrid from './BookGrid'
 
 class BooksShelf extends Component {
 
     static ProTypes = {
-        books: ProTypes.array.isRequired
+        books: ProTypes.array.isRequired,
+        onUpdatedBookShelf: ProTypes.func.isRequired
     }
 
 
@@ -37,70 +38,19 @@ class BooksShelf extends Component {
                 <div className="bookshelf">
                   <h2 className="bookshelf-title">Currently Reading</h2>
                   <div className="bookshelf-books">
-                    <ol className="books-grid">
-                        {
-                          currentlyReadingBooks.map((book) => (
-                            <li key={book.id}>
-                                <div className="book">
-                                <div className="book-top">
-                                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
-                                   <BookShelfChanger shelf={book.shelf} onUpdateBookShelf={shelf => onUpdateBookShelf(book, shelf)} />
-                                </div>
-                                <div className="book-title">{book.title}</div>
-                                <div className="book-authors">{book.authors}</div>
-                                </div>
-                            </li>
-                          ))
-                        }
-                    </ol>
+                  <BookGrid books={currentlyReadingBooks} onUpdateBookShelf={onUpdateBookShelf}/>
                   </div>
                 </div>
                 <div className="bookshelf">
                   <h2 className="bookshelf-title">Want to Read</h2>
                   <div className="bookshelf-books">
-                    <ol className="books-grid">
-                    {
-                          wantToReadBooks.map((book) => (
-                            <li key={book.id}>
-                                <div className="book">
-                                <div className="book-top">
-                                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
-                                    <BookShelfChanger shelf={book.shelf} onUpdateBookShelf={shelf => onUpdateBookShelf(book, shelf)} />
-
-
-                                </div>
-                                <div className="book-title">{book.title}</div>
-                                <div className="book-authors">{book.authors}</div>
-                                </div>
-                            </li>
-                          ))
-                        }
-                    </ol>
+                  <BookGrid books={wantToReadBooks} onUpdateBookShelf={onUpdateBookShelf}/>
                   </div>
                 </div>
                 <div className="bookshelf">
                   <h2 className="bookshelf-title">Read</h2>
                   <div className="bookshelf-books">
-                    <ol className="books-grid">
-                      
-                    {
-                          readBooks.map((book) => (
-                            <li key={book.id}>
-                                <div className="book">
-                                <div className="book-top">
-                                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
-                                    <BookShelfChanger shelf={book.shelf} onUpdateBookShelf={shelf => onUpdateBookShelf(book, shelf)} />
-
-
-                                </div>
-                                <div className="book-title">{book.title}</div>
-                                <div className="book-authors">{book.authors}</div>
-                                </div>
-                            </li>
-                          ))
-                        }
-                      
-                    </ol>
+                  <BookGrid books={readBooks} onUpdateBookShelf={onUpdateBookShelf}/>
                   </div>
                 </div>
               </div>
