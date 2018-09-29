@@ -1,4 +1,8 @@
 {
+  "name": "my_reads",
+  "description": "A book organizer app",
+  "version": "1.0.0",
+  "main": "index.js",
   "dependencies": {
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
